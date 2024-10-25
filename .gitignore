@@ -157,3 +157,5 @@ __pypackages__/
 **.zarr
 **.npy
 
+# venv
+lemon/
