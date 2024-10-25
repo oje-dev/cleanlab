@@ -50,6 +50,7 @@ from cleanlab.internal.label_quality_utils import (
 def get_label_quality_scores(
     labels: np.ndarray,
     pred_probs: np.ndarray,
+    lexical_scores:np.ndarray | None = None,
     *,
     method: str = "self_confidence",
     adjust_pred_probs: bool = False,
@@ -112,6 +113,10 @@ def get_label_quality_scores(
       via subtraction of class confident thresholds and renormalization.
       Set this to ``True`` if you prefer to account for class-imbalance.
       See `Northcutt et al., 2021 <https://jair.org/index.php/jair/article/view/12125>`_.
+    
+    lexial_scores: np.ndarray, optional
+      Account for lexical quality in the quality score. Spelling quality, coherence and grammar weight the label score.
+      Badly formed and spelled sentences lower the quality score, coherent, correct sentences raise the label score.
 
     Returns
     -------
@@ -130,13 +135,14 @@ def get_label_quality_scores(
         X=None, y=labels, pred_probs=pred_probs, multi_label=False, allow_one_class=True
     )
     return _compute_label_quality_scores(
-        labels=labels, pred_probs=pred_probs, method=method, adjust_pred_probs=adjust_pred_probs
+        labels=labels, pred_probs=pred_probs, lexical_scores=lexical_scores, method=method, adjust_pred_probs=adjust_pred_probs
     )
 
 
 def _compute_label_quality_scores(
     labels: np.ndarray,
     pred_probs: np.ndarray,
+    lexical_scores: np.ndarray | None = None,
     *,
     method: str = "self_confidence",
     adjust_pred_probs: bool = False,
@@ -168,7 +174,12 @@ def _compute_label_quality_scores(
         )
 
     scoring_inputs = {"labels": labels, "pred_probs": pred_probs}
-    label_quality_scores = scoring_func(**scoring_inputs)
+
+    if scoring_func == get_self_confidence_for_each_label:
+        label_quality_scores = get_self_confidence_for_each_label(lexical_scores, **scoring_inputs)
+    else:
+      label_quality_scores = scoring_func(**scoring_inputs)
+
     return label_quality_scores
 
 
@@ -479,6 +490,7 @@ def order_label_issues(
 
 
 def get_self_confidence_for_each_label(
+    lexical_scores: np.ndarray | None,
     labels: np.ndarray,
     pred_probs: np.ndarray,
 ) -> np.ndarray:
@@ -501,6 +513,9 @@ def get_self_confidence_for_each_label(
     pred_probs : np.ndarray
       Predicted-probabilities in the same format expected by the `~cleanlab.rank.get_label_quality_scores` function.
 
+    lexical_scores: np.ndarray
+      Lexical quality score of each datapoint.
+
     Returns
     -------
     label_quality_scores : np.ndarray
@@ -510,7 +525,13 @@ def get_self_confidence_for_each_label(
 
     # To make this work for multi-label (but it will slow down runtime), return:
     # np.array([np.mean(pred_probs[i, l]) for i, l in enumerate(labels)])
-    return pred_probs[np.arange(labels.shape[0]), labels]
+    label_quality_scores = pred_probs[np.arange(labels.shape[0]), labels]
+
+    if lexical_scores is not None:
+        return (label_quality_scores + lexical_scores) / 2
+
+    return label_quality_scores
+
 
 
 def get_normalized_margin_for_each_label(

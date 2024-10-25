@@ -496,6 +496,7 @@ class CleanLearning(BaseEstimator):  # Inherits sklearn classifier
                 inverse_noise_matrix=inverse_noise_matrix,
                 clf_kwargs=clf_kwargs,
                 validation_func=validation_func,
+                lexical_scores=None,
             )
 
         else:  # set args that may not have been set if `self.find_label_issues()` wasn't called yet
@@ -705,6 +706,7 @@ class CleanLearning(BaseEstimator):  # Inherits sklearn classifier
         save_space=False,
         clf_kwargs={},
         validation_func=None,
+        lexical_scores=None,
     ) -> pd.DataFrame:
         """
         Identifies potential label issues in the dataset using confident learning.
@@ -938,7 +940,7 @@ class CleanLearning(BaseEstimator):  # Inherits sklearn classifier
                 **self.find_label_issues_kwargs,
             )
         label_quality_scores = get_label_quality_scores(
-            labels, pred_probs, **self.label_quality_scores_kwargs
+            labels=labels, pred_probs=pred_probs, lexical_scores=lexical_scores, **self.label_quality_scores_kwargs
         )
         label_issues_df = pd.DataFrame(
             {"is_label_issue": label_issues_mask, "label_quality": label_quality_scores}
