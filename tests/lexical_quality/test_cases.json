@@ -1,0 +1,122 @@
+[
+    {
+        "sentence": "The cat sat on the mat.",
+        "expected_spelling_score": 1.0,
+        "expected_quality_score": 0.982,
+        "expected_combined_score": 0.991
+    },
+    {
+        "sentence": "Ths is a tst sentnce.",
+        "expected_spelling_score": 0.4,
+        "expected_quality_score": 0.109,
+        "expected_combined_score": 0.443
+    },
+    {
+        "sentence": "There is an apple and a banana on the table.",
+        "expected_spelling_score": 1.0,
+        "expected_quality_score": 0.979,
+        "expected_combined_score": 0.989
+    },
+    {
+        "sentence": "She she walks quickly.",
+        "expected_spelling_score": 0.7,
+        "expected_quality_score": 0.028,
+        "expected_combined_score": 0.185
+    },
+    {
+        "sentence": "Thi sentence has baaad grammar and is weird structured.",
+        "expected_spelling_score": 0.666,
+        "expected_quality_score": 0.066,
+        "expected_combined_score": 0.433
+    },
+    {
+        "sentence": "It is a day with rain clouds.",
+        "expected_spelling_score": 1.0,
+        "expected_quality_score": 0.979,
+        "expected_combined_score": 0.993
+    },
+    {
+        "sentence": "Not complet thought but here.",
+        "expected_spelling_score": 0.666,
+        "expected_quality_score": 0.313,
+        "expected_combined_score": 0.641
+    },
+    {
+        "sentence": "Sme words are not speld correctly.",
+        "expected_spelling_score": 0.666,
+        "expected_quality_score": 0.414,
+        "expected_combined_score": 0.549
+    },
+    {
+        "sentence": "All dogs barks at the moon.",
+        "expected_spelling_score": 0.5,
+        "expected_quality_score": 0.823,
+        "expected_combined_score": 0.911
+    },
+    {
+        "sentence": "An example with typooos and errors on pourpose.",
+        "expected_spelling_score": 0.75,
+        "expected_quality_score": 0.515,
+        "expected_combined_score": 0.453
+    },
+    {
+        "sentence": "The dog runs fast.",
+        "expected_spelling_score": 1.0,
+        "expected_quality_score": 0.987,
+        "expected_combined_score": 0.993
+    },
+    {
+        "sentence": "The qwik brown fox jmps over the lazy dgo.",
+        "expected_spelling_score": 0.8,
+        "expected_quality_score": 0.846,
+        "expected_combined_score": 0.993
+    },
+    {
+        "sentence": "Just plain correct sentence for testing.",
+        "expected_spelling_score": 0.6,
+        "expected_quality_score": 0.823,
+        "expected_combined_score": 0.911
+    },
+    {
+        "sentence": "To be or not to be that is the questin.",
+        "expected_spelling_score": 0.666,
+        "expected_quality_score": 0.515,
+        "expected_combined_score": 0.641
+    },
+    {
+        "sentence": "sentence incomplete grammar no punctuation",
+        "expected_spelling_score": 0.666,
+        "expected_quality_score": 0.414,
+        "expected_combined_score": 0.549
+    },
+    {
+        "sentence": "Speling and gramer erors are hre.",
+        "expected_spelling_score": 0.4,
+        "expected_quality_score": 0.979,
+        "expected_combined_score": 0.989
+    },
+    {
+        "sentence": "Clear thought, well-structured and grammatically sound.",
+        "expected_spelling_score": 0.8,
+        "expected_quality_score": 0.046,
+        "expected_combined_score": 0.827
+    },
+    {
+        "sentence": "Their going to the park to.",
+        "expected_spelling_score": 0.8,
+        "expected_quality_score": 0.043,
+        "expected_combined_score": 0.453
+    },
+    {
+        "sentence": "Correctly spelled but confusing coherence lacking.",
+        "expected_spelling_score": 1.0,
+        "expected_quality_score": 0.088,
+        "expected_combined_score": 0.911
+    },
+    {
+        "sentence": "Misspelled words are a problme and cause confusn.",
+        "expected_spelling_score": 0.5,
+        "expected_quality_score": 0.156,
+        "expected_combined_score": 0.641
+    }
+]
